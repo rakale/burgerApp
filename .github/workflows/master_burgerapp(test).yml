@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_eb26396efb254085be6ab5ae8bd2dc96 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_c50b848e8c9940bb891b9a3de3312a6c }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_1df0e91b514d435b8cb6b5b1b4319710 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_b592de71d6ab482e9ab2da6ac7577453 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_eb26396efb254085be6ab5ae8bd2dc96 }}/burgerApp:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_1df0e91b514d435b8cb6b5b1b4319710 }}/mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'burgerapp'
         slot-name: 'test'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7402a30064984d64ac7423a33f817f67 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_eb26396efb254085be6ab5ae8bd2dc96 }}/burgerApp:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5f68b40b31c94d049156f4308013412f }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_1df0e91b514d435b8cb6b5b1b4319710 }}/mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}'
